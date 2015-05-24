@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="hello">Hello World, Login!</string>
-	<string name="app_name">电子拍卖系统客户端</string>
+	<string name="app_name">网络教学系统客户端</string>
 	<string name="user_name">用户账户：</string>
 	<string name="user_pass">用户口令：</string>
+	<string name="user_type">用户类型：</string>
+	<string name="student">学生</string>
+	<string name="teacher">教师</string>
+	<string name="admin">管理员</string>
 	<string name="login">登录</string>
 	<string name="add">添加</string>
 	<string name="bid">竞价</string>
 	<string name="cancel">取消</string>
-	<string name="welcome">欢迎使用电子拍卖系统</string>
+	<string name="welcome">欢迎使用网络教学系统</string>
 	<string name="view_succ">浏览竞得物品</string>
 	<string name="view_bid">您参与竞标的物品</string>
 	<string name="view_fail">浏览流拍物品</string>

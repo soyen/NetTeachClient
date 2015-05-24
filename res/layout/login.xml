@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="300dp"
+	android:layout_width="350dp"
 	android:layout_height="match_parent"
 	android:layout_gravity="center_horizontal"
 	android:stretchColumns="1">
@@ -44,6 +44,35 @@
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	android:inputType="textPassword"/>
+</TableRow>
+<!-- 用户类型 -->
+<TableRow>
+<TextView
+	android:text="@string/user_type"
+	android:textSize="@dimen/label_font_size"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"/>
+<RadioGroup 
+    android:id="@+id/rgUserType"
+    android:orientation="horizontal"
+    android:layout_gravity="center_horizontal"
+>
+<RadioButton android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/rbStudent"
+    android:text="@string/student"   
+   />  
+   <RadioButton android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/rbTeacher"
+    android:text="@string/teacher"  
+   />  
+   <RadioButton android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/rbAdmin"
+    android:text="@string/admin"  
+   />  
+</RadioGroup>
 </TableRow>
 <!-- 定义登录、取消按钮的行 -->
 <LinearLayout android:orientation="horizontal"

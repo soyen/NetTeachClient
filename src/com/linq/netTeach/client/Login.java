@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import com.linq.netTeach.R;
 import com.linq.netTeach.util.DialogUtil;
 import com.linq.netTeach.util.HttpUtil;
+import com.linq.netTeach.util.Constant;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,6 +18,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 /**
  * Description:
@@ -34,6 +37,12 @@ public class Login extends Activity
 	EditText etName, etPass;
 	// 定义界面中两个按钮
 	Button bnLogin, bnCancel;
+	// 定义界面中的单选按钮
+	RadioGroup rgUserType;
+	// 定义界面中的被选中的单选按钮
+	RadioButton rbUserType;
+	//用户类型
+    String userType;
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -45,6 +54,8 @@ public class Login extends Activity
 		// 获取界面中的两个按钮
 		bnLogin = (Button) findViewById(R.id.bnLogin);
 		bnCancel = (Button) findViewById(R.id.bnCancel);
+		// 获取界面中的单选按钮
+		rgUserType = (RadioGroup)findViewById(R.id.rgUserType);
 		// 为bnCancal按钮的单击事件绑定事件监听器
 		bnCancel.setOnClickListener(new HomeListener(this));
 		bnLogin.setOnClickListener(new OnClickListener()
@@ -59,8 +70,8 @@ public class Login extends Activity
 					if (loginPro())  //②
 					{
 						// 启动Main Activity
-						Intent intent = new Intent(Login.this
-							, NetTeachClientActivity.class);
+						Intent intent = new Intent(Login.this, NetTeachClientActivity.class);	
+						intent.putExtra("userType", userType);
 						startActivity(intent);
 						// 结束该Activity
 						finish();
@@ -73,6 +84,12 @@ public class Login extends Activity
 				}
 			}
 		});
+		rgUserType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {			
+			@Override
+			public void onCheckedChanged(RadioGroup group, int checkedId) {
+				rbUserType = (RadioButton)findViewById(checkedId);				
+			}
+		});
 	}
 
 	private boolean loginPro()
@@ -80,12 +97,28 @@ public class Login extends Activity
 		// 获取用户输入的用户名、密码
 		String username = etName.getText().toString();
 		String pwd = etPass.getText().toString();
+		// 获取用户类型        
+        switch (rbUserType.getId()) {
+		case R.id.rbStudent:
+			userType = Constant.STUDENT.toString();
+			break;
+		case R.id.rbTeacher:
+			userType = Constant.TEACHER.toString();	
+		    break;
+		case R.id.rbAdmin:
+			userType = Constant.ADMIN.toString();
+			break;
+		default:
+		    userType = "";
+		    break;
+		}
+
 		JSONObject jsonObj;
 		try
 		{
-			jsonObj = query(username, pwd);
+			jsonObj = query(username, pwd, userType);
 			// 如果userId 大于0
-			if (jsonObj.getInt("userId") > 0)
+			if (jsonObj.getInt("id") > 0)
 			{
 				return true;
 			}
@@ -115,17 +148,23 @@ public class Login extends Activity
 			DialogUtil.showDialog(this, "用户口令是必填项！", false);
 			return false;
 		}
+		if(rgUserType.getCheckedRadioButtonId()==-1)
+		{
+			DialogUtil.showDialog(this, "用户类型是必选项！", false);
+			return false;
+		}
 		return true;
 	}
 
 	// 定义发送请求的方法
-	private JSONObject query(String username, String password)
+	private JSONObject query(String username, String password,String userType)
 		throws Exception
 	{
 		// 使用Map封装请求参数
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("user", username);
-		map.put("pass", password);
+		map.put("username", username);
+		map.put("password", password);
+		map.put("userType", userType);
 		// 定义发送请求的URL
 		String url = HttpUtil.BASE_URL + "login.jsp";
 		// 发送请求

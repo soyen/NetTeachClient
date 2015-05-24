@@ -3,16 +3,18 @@ package com.linq.netTeach.client;
 import com.linq.netTeach.R;
 
 import android.app.Activity;
+import android.app.Fragment;
 
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 /**
@@ -25,22 +27,49 @@ import android.widget.ListView;
  * @author  Yeeku.H.Lee kongyeeku@163.com
  * @version  1.0
  */
-public class NetTeachListFragment extends Fragment
+public class NetTeachMainMenuFragment extends Fragment
 {	
-	ListView auctionList;
-	private Callbacks mCallbacks;	
+	ListView menuList;
+	String[] menu; 
+	private Callbacks mCallbacks;
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) 
+	{
+		super.onCreate(savedInstanceState);
+	}
+
 	// 重写该方法，该方法返回的View将作为Fragment显示的组件
 	@Override
 	public View onCreateView(LayoutInflater inflater
 		, ViewGroup container, Bundle savedInstanceState)
 	{
-		// 加载/res/layout/目录下的function_list.xml布局文件
-		View rootView = inflater.inflate(R.layout.auction_list,
-			container, false);
-		auctionList = (ListView) rootView.findViewById(
-			R.id.auction_list);
+		// 加载/res/layout/目录下的main_menu.xml布局文件
+		View rootView = inflater.inflate(R.layout.main_menu,container, false);
+		menuList = (ListView) rootView.findViewById(R.id.menu_list);
+		NetTeachClientActivity netTeachClientActivity = (NetTeachClientActivity)getActivity();		
+		String userType = netTeachClientActivity.userType;
+		int menuId = -1;
+		// 获取用户类型        
+        switch (Integer.parseInt(userType)) {
+		case 1:
+			menuId = R.array.student_menu;
+			break;
+		case 2:
+			menuId = R.array.teacher_menu;
+		    break;
+		case 3:
+			menuId = R.array.admin_menu;
+			break;
+		default:
+		    menuId = -1;
+		    break;
+		}
+        menu = getResources().getStringArray(menuId);		
+		ArrayAdapter<String> menuAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1, menu);
+		menuList.setAdapter(menuAdapter);
 		// 为ListView的列表项的单击事件绑定事件监听器
-		auctionList.setOnItemClickListener(new OnItemClickListener()
+		menuList.setOnItemClickListener(new OnItemClickListener()
 		{
 
 			@Override
@@ -78,7 +107,7 @@ public class NetTeachListFragment extends Fragment
 
 	public void setActivateOnItemClick(boolean activateOnItemClick)
 	{
-		auctionList.setChoiceMode(activateOnItemClick 
+		menuList.setChoiceMode(activateOnItemClick 
 			? ListView.CHOICE_MODE_SINGLE
 			: ListView.CHOICE_MODE_NONE);
 	}

@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string-array name="auction_list">
-		<item>查看竞得物品</item>
-		<item>浏览流拍物品</item>
-		<item>管理物品种类</item>
-		<item>管理物品</item>
-		<item>浏览拍卖物品</item>
-		<item>查看自己的竞标</item>
+	<string-array name="student_menu">
+		<item>浏览公告</item>
+		<item>资源下载</item>
+		<item>网上课程</item>
+		<item>已选课程</item>
+		<item>课程作业</item>
+		<item>已做作业</item>
+		<item>个人资料</item>
+		<item>实验演示</item>
+	</string-array>
+	<string-array name="teacher_menu">
+		<item>浏览公告</item>
+		<item>网络课程</item>
+		<item>选课信息</item>
+		<item>网络资源</item>
+		<item>习题添加</item>
+		<item>查看习题</item>
+		<item>个人资料</item>
+	</string-array>
+	<string-array name="admin_menu">
+		<item>公告管理</item>
+		<item>课程管理</item>
+		<item>资源管理</item>
+		<item>部门管理</item>
+		<item>班级管理</item>
+		<item>教师管理</item>
+		<item>学生管理</item>
 	</string-array>
 	<string-array name="availTime">
 		<item>一天</item>
