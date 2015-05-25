@@ -2,10 +2,10 @@ package com.linq.netTeach.util;
 
 public enum Constant {
 STUDENT(1),TEACHER(2),ADMIN(3);
-// ¶¨ÒåË½ÓĞ±äÁ¿
+// å®šä¹‰ç§æœ‰å˜é‡
 private int nCode ;
 
-// ¹¹Ôìº¯Êı£¬Ã¶¾ÙÀàĞÍÖ»ÄÜÎªË½ÓĞ
+// æ„é€ å‡½æ•°ï¼Œæšä¸¾ç±»å‹åªèƒ½ä¸ºç§æœ‰
 private Constant( int _nCode) {
     this . nCode = _nCode;
 }

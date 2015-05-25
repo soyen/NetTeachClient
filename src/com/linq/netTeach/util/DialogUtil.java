@@ -16,7 +16,7 @@ import android.view.View;
 
 /**
  * Description:
- * <br/>ÍøÕ¾: <a href="http://www.crazyit.org">·è¿ñJavaÁªÃË</a>
+ * <br/>ç½‘ç«™: <a href="http://www.crazyit.org">ç–¯ç‹‚Javaè”ç›Ÿ</a>
  * <br/>Copyright (C), 2001-2014, Yeeku.H.Lee
  * <br/>This program is protected by copyright laws.
  * <br/>Program Name:
@@ -26,16 +26,16 @@ import android.view.View;
  */
 public class DialogUtil
 {
-	// ¶¨ÒåÒ»¸öÏÔÊ¾ÏûÏ¢µÄ¶Ô»°¿ò
+	// å®šä¹‰ä¸€ä¸ªæ˜¾ç¤ºæ¶ˆæ¯çš„å¯¹è¯æ¡†
 	public static void showDialog(final Context ctx
 		, String msg , boolean goHome)
 	{
-		// ´´½¨Ò»¸öAlertDialog.Builder¶ÔÏó
+		// åˆ›å»ºä¸€ä¸ªAlertDialog.Builderå¯¹è±¡
 		AlertDialog.Builder builder = new AlertDialog.Builder(ctx)
 			.setMessage(msg).setCancelable(false);
 		if(goHome)
 		{
-			builder.setPositiveButton("È·¶¨", new OnClickListener()
+			builder.setPositiveButton("ç¡®å®š", new OnClickListener()
 			{
 				@Override
 				public void onClick(DialogInterface dialog, int which)
@@ -48,16 +48,16 @@ public class DialogUtil
 		}
 		else
 		{
-			builder.setPositiveButton("È·¶¨", null);
+			builder.setPositiveButton("ç¡®å®š", null);
 		}
 		builder.create().show();
 	}
-	// ¶¨ÒåÒ»¸öÏÔÊ¾Ö¸¶¨×é¼şµÄ¶Ô»°¿ò
+	// å®šä¹‰ä¸€ä¸ªæ˜¾ç¤ºæŒ‡å®šç»„ä»¶çš„å¯¹è¯æ¡†
 	public static void showDialog(Context ctx , View view)
 	{
 		new AlertDialog.Builder(ctx)
 			.setView(view).setCancelable(false)
-			.setPositiveButton("È·¶¨", null)
+			.setPositiveButton("ç¡®å®š", null)
 			.create()
 			.show();
 	}

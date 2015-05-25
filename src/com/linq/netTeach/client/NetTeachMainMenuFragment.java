@@ -39,18 +39,18 @@ public class NetTeachMainMenuFragment extends Fragment
 		super.onCreate(savedInstanceState);
 	}
 
-	// ÖØĞ´¸Ã·½·¨£¬¸Ã·½·¨·µ»ØµÄView½«×÷ÎªFragmentÏÔÊ¾µÄ×é¼ş
+	// é‡å†™è¯¥æ–¹æ³•ï¼Œè¯¥æ–¹æ³•è¿”å›çš„Viewå°†ä½œä¸ºFragmentæ˜¾ç¤ºçš„ç»„ä»¶
 	@Override
 	public View onCreateView(LayoutInflater inflater
 		, ViewGroup container, Bundle savedInstanceState)
 	{
-		// ¼ÓÔØ/res/layout/Ä¿Â¼ÏÂµÄmain_menu.xml²¼¾ÖÎÄ¼ş
+		// åŠ è½½/res/layout/ç›®å½•ä¸‹çš„main_menu.xmlå¸ƒå±€æ–‡ä»¶
 		View rootView = inflater.inflate(R.layout.main_menu,container, false);
 		menuList = (ListView) rootView.findViewById(R.id.menu_list);
 		NetTeachClientActivity netTeachClientActivity = (NetTeachClientActivity)getActivity();		
 		String userType = netTeachClientActivity.userType;
 		int menuId = -1;
-		// »ñÈ¡ÓÃ»§ÀàĞÍ        
+		// è·å–ç”¨æˆ·ç±»å‹        
         switch (Integer.parseInt(userType)) {
 		case 1:
 			menuId = R.array.student_menu;
@@ -68,7 +68,7 @@ public class NetTeachMainMenuFragment extends Fragment
         menu = getResources().getStringArray(menuId);		
 		ArrayAdapter<String> menuAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1, menu);
 		menuList.setAdapter(menuAdapter);
-		// ÎªListViewµÄÁĞ±íÏîµÄµ¥»÷ÊÂ¼ş°ó¶¨ÊÂ¼ş¼àÌıÆ÷
+		// ä¸ºListViewçš„åˆ—è¡¨é¡¹çš„å•å‡»äº‹ä»¶ç»‘å®šäº‹ä»¶ç›‘å¬å™¨
 		menuList.setOnItemClickListener(new OnItemClickListener()
 		{
 
@@ -82,26 +82,26 @@ public class NetTeachMainMenuFragment extends Fragment
 		return rootView;
 	}	
 	
-	// µ±¸ÃFragment±»Ìí¼Ó¡¢ÏÔÊ¾µ½ActivityÊ±£¬»Øµ÷¸Ã·½·¨
+	// å½“è¯¥Fragmentè¢«æ·»åŠ ã€æ˜¾ç¤ºåˆ°Activityæ—¶ï¼Œå›è°ƒè¯¥æ–¹æ³•
 	@Override
 	public void onAttach(Activity activity)
 	{
 		super.onAttach(activity);
-		// Èç¹ûActivityÃ»ÓĞÊµÏÖCallbacks½Ó¿Ú£¬Å×³öÒì³£
+		// å¦‚æœActivityæ²¡æœ‰å®ç°Callbacksæ¥å£ï¼ŒæŠ›å‡ºå¼‚å¸¸
 		if (!(activity instanceof Callbacks))
 		{
 			throw new IllegalStateException(
-				"NetTeachListFragmentËùÔÚµÄActivity±ØĞëÊµÏÖCallbacks½Ó¿Ú!");
+				"NetTeachListFragmentæ‰€åœ¨çš„Activityå¿…é¡»å®ç°Callbacksæ¥å£!");
 		}
-		// °Ñ¸ÃActivityµ±³ÉCallbacks¶ÔÏó
+		// æŠŠè¯¥Activityå½“æˆCallbackså¯¹è±¡
 		mCallbacks = (Callbacks) activity;
 	}
-	// µ±¸ÃFragment´ÓËüËùÊôµÄActivityÖĞ±»É¾³ıÊ±»Øµ÷¸Ã·½·¨
+	// å½“è¯¥Fragmentä»å®ƒæ‰€å±çš„Activityä¸­è¢«åˆ é™¤æ—¶å›è°ƒè¯¥æ–¹æ³•
 	@Override
 	public void onDetach()
 	{
 		super.onDetach();
-		// ½«mCallbacks¸³Îªnull¡£
+		// å°†mCallbacksèµ‹ä¸ºnullã€‚
 		mCallbacks = null;
 	}
 

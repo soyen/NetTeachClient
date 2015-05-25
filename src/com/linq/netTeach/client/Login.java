@@ -33,53 +33,53 @@ import android.widget.RadioGroup;
  */
 public class Login extends Activity
 {
-	// ¶¨Òå½çÃæÖĞÁ½¸öÎÄ±¾¿ò
+	// å®šä¹‰ç•Œé¢ä¸­ä¸¤ä¸ªæ–‡æœ¬æ¡†
 	EditText etName, etPass;
-	// ¶¨Òå½çÃæÖĞÁ½¸ö°´Å¥
+	// å®šä¹‰ç•Œé¢ä¸­ä¸¤ä¸ªæŒ‰é’®
 	Button bnLogin, bnCancel;
-	// ¶¨Òå½çÃæÖĞµÄµ¥Ñ¡°´Å¥
+	// å®šä¹‰ç•Œé¢ä¸­çš„å•é€‰æŒ‰é’®
 	RadioGroup rgUserType;
-	// ¶¨Òå½çÃæÖĞµÄ±»Ñ¡ÖĞµÄµ¥Ñ¡°´Å¥
+	// å®šä¹‰ç•Œé¢ä¸­çš„è¢«é€‰ä¸­çš„å•é€‰æŒ‰é’®
 	RadioButton rbUserType;
-	//ÓÃ»§ÀàĞÍ
+	//ç”¨æˆ·ç±»å‹
     String userType;
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
-		// »ñÈ¡½çÃæÖĞÁ½¸ö±à¼­¿ò
+		// è·å–ç•Œé¢ä¸­ä¸¤ä¸ªç¼–è¾‘æ¡†
 		etName = (EditText) findViewById(R.id.userEditText);
 		etPass = (EditText) findViewById(R.id.pwdEditText);
-		// »ñÈ¡½çÃæÖĞµÄÁ½¸ö°´Å¥
+		// è·å–ç•Œé¢ä¸­çš„ä¸¤ä¸ªæŒ‰é’®
 		bnLogin = (Button) findViewById(R.id.bnLogin);
 		bnCancel = (Button) findViewById(R.id.bnCancel);
-		// »ñÈ¡½çÃæÖĞµÄµ¥Ñ¡°´Å¥
+		// è·å–ç•Œé¢ä¸­çš„å•é€‰æŒ‰é’®
 		rgUserType = (RadioGroup)findViewById(R.id.rgUserType);
-		// ÎªbnCancal°´Å¥µÄµ¥»÷ÊÂ¼ş°ó¶¨ÊÂ¼ş¼àÌıÆ÷
+		// ä¸ºbnCancalæŒ‰é’®çš„å•å‡»äº‹ä»¶ç»‘å®šäº‹ä»¶ç›‘å¬å™¨
 		bnCancel.setOnClickListener(new HomeListener(this));
 		bnLogin.setOnClickListener(new OnClickListener()
 		{
 			@Override
 			public void onClick(View v)
 			{
-				// Ö´ĞĞÊäÈëĞ£Ñé
-				if (validate())  //¢Ù
+				// æ‰§è¡Œè¾“å…¥æ ¡éªŒ
+				if (validate())  //â‘ 
 				{
-					// Èç¹ûµÇÂ¼³É¹¦
-					if (loginPro())  //¢Ú
+					// å¦‚æœç™»å½•æˆåŠŸ
+					if (loginPro())  //â‘¡
 					{
-						// Æô¶¯Main Activity
+						// å¯åŠ¨Main Activity
 						Intent intent = new Intent(Login.this, NetTeachClientActivity.class);	
 						intent.putExtra("userType", userType);
 						startActivity(intent);
-						// ½áÊø¸ÃActivity
+						// ç»“æŸè¯¥Activity
 						finish();
 					}
 					else
 					{
 						DialogUtil.showDialog(Login.this
-							, "ÓÃ»§Ãû³Æ»òÕßÃÜÂë´íÎó£¬ÇëÖØĞÂÊäÈë£¡", false);
+							, "ç”¨æˆ·åç§°æˆ–è€…å¯†ç é”™è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥ï¼", false);
 					}
 				}
 			}
@@ -94,10 +94,10 @@ public class Login extends Activity
 
 	private boolean loginPro()
 	{
-		// »ñÈ¡ÓÃ»§ÊäÈëµÄÓÃ»§Ãû¡¢ÃÜÂë
+		// è·å–ç”¨æˆ·è¾“å…¥çš„ç”¨æˆ·åã€å¯†ç 
 		String username = etName.getText().toString();
 		String pwd = etPass.getText().toString();
-		// »ñÈ¡ÓÃ»§ÀàĞÍ        
+		// è·å–ç”¨æˆ·ç±»å‹        
         switch (rbUserType.getId()) {
 		case R.id.rbStudent:
 			userType = Constant.STUDENT.toString();
@@ -117,7 +117,7 @@ public class Login extends Activity
 		try
 		{
 			jsonObj = query(username, pwd, userType);
-			// Èç¹ûuserId ´óÓÚ0
+			// å¦‚æœuserId å¤§äº0
 			if (jsonObj.getInt("id") > 0)
 			{
 				return true;
@@ -126,48 +126,48 @@ public class Login extends Activity
 		catch (Exception e)
 		{
 			DialogUtil.showDialog(this
-				, "·şÎñÆ÷ÏìÓ¦Òì³££¬ÇëÉÔºóÔÙÊÔ£¡", false);
+				, "æœåŠ¡å™¨å“åº”å¼‚å¸¸ï¼Œè¯·ç¨åå†è¯•ï¼", false);
 			e.printStackTrace();
 		}
 
 		return false;
 	}
 
-	// ¶ÔÓÃ»§ÊäÈëµÄÓÃ»§Ãû¡¢ÃÜÂë½øĞĞĞ£Ñé
+	// å¯¹ç”¨æˆ·è¾“å…¥çš„ç”¨æˆ·åã€å¯†ç è¿›è¡Œæ ¡éªŒ
 	private boolean validate()
 	{
 		String username = etName.getText().toString().trim();
 		if (username.equals(""))
 		{
-			DialogUtil.showDialog(this, "ÓÃ»§ÕË»§ÊÇ±ØÌîÏî£¡", false);
+			DialogUtil.showDialog(this, "ç”¨æˆ·è´¦æˆ·æ˜¯å¿…å¡«é¡¹ï¼", false);
 			return false;
 		}
 		String pwd = etPass.getText().toString().trim();
 		if (pwd.equals(""))
 		{
-			DialogUtil.showDialog(this, "ÓÃ»§¿ÚÁîÊÇ±ØÌîÏî£¡", false);
+			DialogUtil.showDialog(this, "ç”¨æˆ·å£ä»¤æ˜¯å¿…å¡«é¡¹ï¼", false);
 			return false;
 		}
 		if(rgUserType.getCheckedRadioButtonId()==-1)
 		{
-			DialogUtil.showDialog(this, "ÓÃ»§ÀàĞÍÊÇ±ØÑ¡Ïî£¡", false);
+			DialogUtil.showDialog(this, "ç”¨æˆ·ç±»å‹æ˜¯å¿…é€‰é¡¹ï¼", false);
 			return false;
 		}
 		return true;
 	}
 
-	// ¶¨Òå·¢ËÍÇëÇóµÄ·½·¨
+	// å®šä¹‰å‘é€è¯·æ±‚çš„æ–¹æ³•
 	private JSONObject query(String username, String password,String userType)
 		throws Exception
 	{
-		// Ê¹ÓÃMap·â×°ÇëÇó²ÎÊı
+		// ä½¿ç”¨Mapå°è£…è¯·æ±‚å‚æ•°
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("username", username);
 		map.put("password", password);
 		map.put("userType", userType);
-		// ¶¨Òå·¢ËÍÇëÇóµÄURL
+		// å®šä¹‰å‘é€è¯·æ±‚çš„URL
 		String url = HttpUtil.BASE_URL + "login.jsp";
-		// ·¢ËÍÇëÇó
+		// å‘é€è¯·æ±‚
 		return new JSONObject(HttpUtil.postRequest(url, map));
 	}
 }

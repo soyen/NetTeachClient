@@ -24,14 +24,9 @@ public class NetTeachClientActivity extends Activity
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		System.out.println("-----NetTeachClientActivity---onCreate------");
 		Intent intent = getIntent();
 		userType = intent.getStringExtra("userType");
-//		Bundle arguments = new Bundle();
-//		arguments.putString("userType", userType);
-//		System.out.println("-----NetTeachClientActivity---onCreate---1---");
 		setContentView(R.layout.activity_main);
-//		System.out.println("-----NetTeachClientActivity---onCreate---2---");
 
 	}
 	@Override
