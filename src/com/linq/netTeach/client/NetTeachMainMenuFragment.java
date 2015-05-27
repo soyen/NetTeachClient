@@ -49,7 +49,7 @@ public class NetTeachMainMenuFragment extends Fragment
 		menuList = (ListView) rootView.findViewById(R.id.menu_list);
 		NetTeachClientActivity netTeachClientActivity = (NetTeachClientActivity)getActivity();		
 		String userType = netTeachClientActivity.userType;
-		int menuId = -1;
+		int menuId;
 		// 获取用户类型        
         switch (Integer.parseInt(userType)) {
 		case 1:

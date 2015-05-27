@@ -9,7 +9,7 @@ import org.json.JSONObject;
 import com.linq.netTeach.R;
 import com.linq.netTeach.util.DialogUtil;
 import com.linq.netTeach.util.HttpUtil;
-import com.linq.netTeach.util.Constant;
+import com.linq.netTeach.util.UserTypeConstant;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -96,22 +96,23 @@ public class Login extends Activity
 	{
 		// 获取用户输入的用户名、密码
 		String username = etName.getText().toString();
-		String pwd = etPass.getText().toString();
-		// 获取用户类型        
-        switch (rbUserType.getId()) {
-		case R.id.rbStudent:
-			userType = Constant.STUDENT.toString();
+		String pwd = etPass.getText().toString();		
+		// 获取用户类型      
+		UserTypeConstant userTypeConstant = UserTypeConstant.getUserTypeByStringValue(rbUserType.getText().toString());
+        switch (userTypeConstant) {
+		case STUDENT_USER:
+			userType = UserTypeConstant.STUDENT_USER.toString();
 			break;
-		case R.id.rbTeacher:
-			userType = Constant.TEACHER.toString();	
+		case TEACHER_USER:
+			userType = UserTypeConstant.TEACHER_USER.toString();
 		    break;
-		case R.id.rbAdmin:
-			userType = Constant.ADMIN.toString();
+		case ADMIN_USER:
+			userType = UserTypeConstant.ADMIN_USER.toString();
 			break;
 		default:
 		    userType = "";
 		    break;
-		}
+        }
 
 		JSONObject jsonObj;
 		try
