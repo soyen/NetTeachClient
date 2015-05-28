@@ -41,8 +41,6 @@ public class Login extends Activity
 	RadioGroup rgUserType;
 	// 定义界面中的被选中的单选按钮
 	RadioButton rbUserType;
-	//用户类型
-    String userType;
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -71,7 +69,6 @@ public class Login extends Activity
 					{
 						// 启动Main Activity
 						Intent intent = new Intent(Login.this, NetTeachClientActivity.class);	
-						intent.putExtra("userType", userType);
 						startActivity(intent);
 						// 结束该Activity
 						finish();
@@ -96,24 +93,26 @@ public class Login extends Activity
 	{
 		// 获取用户输入的用户名、密码
 		String username = etName.getText().toString();
-		String pwd = etPass.getText().toString();		
+		String pwd = etPass.getText().toString();
+		int userType;
 		// 获取用户类型      
 		UserTypeConstant userTypeConstant = UserTypeConstant.getUserTypeByStringValue(rbUserType.getText().toString());
         switch (userTypeConstant) {
 		case STUDENT_USER:
-			userType = UserTypeConstant.STUDENT_USER.toString();
+			userType = UserTypeConstant.STUDENT_USER.getIntValue();
 			break;
 		case TEACHER_USER:
-			userType = UserTypeConstant.TEACHER_USER.toString();
+			userType = UserTypeConstant.TEACHER_USER.getIntValue();
 		    break;
 		case ADMIN_USER:
-			userType = UserTypeConstant.ADMIN_USER.toString();
+			userType = UserTypeConstant.ADMIN_USER.getIntValue();
 			break;
 		default:
-		    userType = "";
+		    userType = 0;
 		    break;
         }
-
+        NetTeachClientApplication netTeachClientApplication =(NetTeachClientApplication)getApplication();
+        netTeachClientApplication.setUserType(userType);
 		JSONObject jsonObj;
 		try
 		{
@@ -158,14 +157,14 @@ public class Login extends Activity
 	}
 
 	// 定义发送请求的方法
-	private JSONObject query(String username, String password,String userType)
+	private JSONObject query(String username, String password,int userType)
 		throws Exception
 	{
 		// 使用Map封装请求参数
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("username", username);
 		map.put("password", password);
-		map.put("userType", userType);
+		map.put("userType", String.valueOf(userType));
 		// 定义发送请求的URL
 		String url = HttpUtil.BASE_URL + "login.jsp";
 		// 发送请求

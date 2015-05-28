@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/add_notice" android:visible="true" android:showAsAction="always" android:title="@string/add" android:icon="@android:drawable/ic_menu_add"></item>
+    <item android:id="@+id/delete_notice" android:visible="true" android:showAsAction="always" android:title="@string/delete" android:icon="@android:drawable/ic_menu_delete"></item>
+    <item android:id="@+id/edit_notice" android:showAsAction="ifRoom" android:title="@string/edit" android:visible="true" android:icon="@android:drawable/ic_menu_edit"></item>
+    <item android:id="@+id/search_notice" android:showAsAction="ifRoom" android:title="@string/search" android:visible="true" android:icon="@android:drawable/ic_menu_search"></item>
+    
+</menu>

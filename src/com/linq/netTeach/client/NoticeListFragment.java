@@ -39,11 +39,11 @@ public class NoticeListFragment extends Fragment {
 		String action = getArguments().getString("action");
 		// 定义发送请求的URL
 		String url = HttpUtil.BASE_URL + action;
-		// 如果是查看流拍物品，修改标题
-		if (action.equals("noticeList.jsp"))
-		{
-			viewTitle.setText(R.string.view_fail);
-		}
+//		// 如果是查看流拍物品，修改标题
+//		if (action.equals("noticeList.jsp"))
+//		{
+//			viewTitle.setText(R.string.view_fail);
+//		}
 		try
 		{
 			// 向指定URL发送请求，并把服务器响应转换成JSONArray对象
@@ -78,24 +78,21 @@ public class NoticeListFragment extends Fragment {
 		View detailView = getActivity().getLayoutInflater()
 			.inflate(R.layout.notice, null);
 		// 获取detail.xml界面布局中的文本框
-		TextView itemName = (TextView) detailView
-			.findViewById(R.id.itemName);
-		TextView itemKind = (TextView) detailView
-			.findViewById(R.id.itemKind);
-		TextView maxPrice = (TextView) detailView
-			.findViewById(R.id.maxPrice);
-		TextView itemRemark = (TextView) detailView
-			.findViewById(R.id.itemRemark);
+		TextView noticeTitle = (TextView) detailView
+			.findViewById(R.id.noticeTitle);
+		TextView noticeContent = (TextView) detailView
+			.findViewById(R.id.noticeContent);
+		TextView noticeCreateTime = (TextView) detailView
+			.findViewById(R.id.noticeCreateTime);
+
 		// 获取被单击的列表项
-		JSONObject jsonObj = (JSONObject) noticeList.getAdapter().getItem(
-			position);
+		JSONObject jsonObj = (JSONObject) noticeList.getAdapter().getItem(position);
 		try
 		{
 			// 通过文本框显示物品详情
-			itemName.setText(jsonObj.getString("name"));
-			itemKind.setText(jsonObj.getString("kind"));
-			maxPrice.setText(jsonObj.getString("maxPrice"));
-			itemRemark.setText(jsonObj.getString("desc"));
+			noticeTitle.setText(jsonObj.getString("title"));
+			noticeContent.setText(jsonObj.getString("content"));
+			noticeCreateTime.setText(jsonObj.getString("createTime"));
 		}
 		catch (JSONException e)
 		{

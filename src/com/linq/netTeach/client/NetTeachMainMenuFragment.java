@@ -1,6 +1,7 @@
 package com.linq.netTeach.client;
 
 import com.linq.netTeach.R;
+import com.linq.netTeach.util.UserTypeConstant;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -8,7 +9,6 @@ import android.app.Fragment;
 
 
 import android.os.Bundle;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,25 +46,26 @@ public class NetTeachMainMenuFragment extends Fragment
 	{
 		// 加载/res/layout/目录下的main_menu.xml布局文件
 		View rootView = inflater.inflate(R.layout.main_menu,container, false);
-		menuList = (ListView) rootView.findViewById(R.id.menu_list);
-		NetTeachClientActivity netTeachClientActivity = (NetTeachClientActivity)getActivity();		
-		String userType = netTeachClientActivity.userType;
+		menuList = (ListView) rootView.findViewById(R.id.menu_list);	
+		NetTeachClientApplication netTeachClientApplication =(NetTeachClientApplication)getActivity().getApplication();
+		int userTypeInt = netTeachClientApplication.getUserType();		
+		UserTypeConstant userTypeConstant = UserTypeConstant.getUserTypeByIntValue(userTypeInt);
+		// 获取用户类型   
 		int menuId;
-		// 获取用户类型        
-        switch (Integer.parseInt(userType)) {
-		case 1:
+        switch (userTypeConstant) {
+		case STUDENT_USER:
 			menuId = R.array.student_menu;
 			break;
-		case 2:
+		case TEACHER_USER:
 			menuId = R.array.teacher_menu;
 		    break;
-		case 3:
+		case ADMIN_USER:
 			menuId = R.array.admin_menu;
 			break;
 		default:
 		    menuId = -1;
 		    break;
-		}
+		}     			
         menu = getResources().getStringArray(menuId);		
 		ArrayAdapter<String> menuAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1, menu);
 		menuList.setAdapter(menuAdapter);

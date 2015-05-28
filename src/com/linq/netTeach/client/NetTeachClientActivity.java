@@ -20,13 +20,11 @@ import android.os.Bundle;
 public class NetTeachClientActivity extends Activity
 	implements Callbacks
 {
-    String userType;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		Intent intent = getIntent();
-		userType = intent.getStringExtra("userType");
 		setContentView(R.layout.activity_main);
 
 	}
@@ -34,7 +32,8 @@ public class NetTeachClientActivity extends Activity
 	public void onItemSelected(Integer id , Bundle bundle)
 	{
 		Intent intent = null;
-		int userTypeInt = Integer.parseInt(userType);
+		NetTeachClientApplication netTeachClientApplication =(NetTeachClientApplication)getApplication();
+		int userTypeInt = netTeachClientApplication.getUserType();
 		// 获取用户类型      
 		UserTypeConstant userTypeConstant = UserTypeConstant.getUserTypeByIntValue(userTypeInt);
         switch (userTypeConstant) {
@@ -90,7 +89,7 @@ public class NetTeachClientActivity extends Activity
 			}
 			break;
 		default:
-		    userType = "";
+
 		    break;
         }
 		

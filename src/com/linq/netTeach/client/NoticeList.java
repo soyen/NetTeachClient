@@ -1,7 +1,11 @@
 package com.linq.netTeach.client;
 
+import com.linq.netTeach.R;
+
 import android.app.Fragment;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 
 public class NoticeList extends FragmentActivity {
 
@@ -15,4 +19,13 @@ public class NoticeList extends FragmentActivity {
 		return fragment;
 	}
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater menuInflater = new MenuInflater(this);
+		menuInflater.inflate(R.menu.notice_menu, menu);
+		return super.onCreateOptionsMenu(menu);
+		
+	}
+
+	
 }
