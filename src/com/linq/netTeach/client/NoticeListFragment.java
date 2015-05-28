@@ -32,7 +32,7 @@ public class NoticeListFragment extends Fragment {
 		View rootView = inflater.inflate(R.layout.notice_list, container , false);
 		// 获取界面上的返回按钮
 		bnHome = (Button) rootView.findViewById(R.id.bn_home);
-		noticeList = (ListView) rootView.findViewById(R.id.succList);
+		noticeList = (ListView) rootView.findViewById(R.id.noticeList);
 		viewTitle = (TextView) rootView.findViewById(R.id.view_titile);
 		// 为返回按钮的单击事件绑定事件监听器
 		bnHome.setOnClickListener(new HomeListener(getActivity()));
@@ -51,7 +51,7 @@ public class NoticeListFragment extends Fragment {
 				.getRequest(url));  //①
 			// 将JSONArray包装成Adapter
 			JSONArrayAdapter adapter = new JSONArrayAdapter(getActivity()
-				, jsonArray, "name", true);  //②
+				, jsonArray, "title", true);  //②
 			noticeList.setAdapter(adapter);
 		}
 		catch (Exception e)

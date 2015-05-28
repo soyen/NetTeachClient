@@ -13,7 +13,7 @@
 	<string name="bid">竞价</string>
 	<string name="cancel">取消</string>
 	<string name="welcome">欢迎使用网络教学系统</string>
-	<string name="view_succ">浏览竞得物品</string>
+	<string name="notice_list">公告列表</string>
 	<string name="view_bid">您参与竞标的物品</string>
 	<string name="view_fail">浏览流拍物品</string>
 	<string name="manage_item">您当前的拍卖物品</string>
