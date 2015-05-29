@@ -1,6 +1,8 @@
 package com.linq.netTeach.client;
 
 
+import java.util.Map;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,13 +39,10 @@ public class NoticeListFragment extends Fragment {
 		// 为返回按钮的单击事件绑定事件监听器
 		bnHome.setOnClickListener(new HomeListener(getActivity()));
 		String action = getArguments().getString("action");
+		String method = getArguments().getString("method");
+
 		// 定义发送请求的URL
 		String url = HttpUtil.BASE_URL + action;
-//		// 如果是查看流拍物品，修改标题
-//		if (action.equals("noticeList.jsp"))
-//		{
-//			viewTitle.setText(R.string.view_fail);
-//		}
 		try
 		{
 			// 向指定URL发送请求，并把服务器响应转换成JSONArray对象

@@ -51,7 +51,8 @@ public class NetTeachClientActivity extends Activity
 					// 启动NoticeList Activity
 					intent = new Intent(this, NoticeList.class);
 					// action属性为请求的Servlet地址。
-					intent.putExtra("action", "noticeList.jsp");
+					intent.putExtra("action", "notice.do?method=listNotice");
+//					intent.putExtra("method", "listNotice");
 					startActivity(intent);
 					break;
 				// 浏览流拍物品

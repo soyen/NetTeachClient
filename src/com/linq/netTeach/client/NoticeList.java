@@ -15,6 +15,8 @@ public class NoticeList extends FragmentActivity {
 		Bundle arguments = new Bundle();
 		arguments.putString("action"
 			, getIntent().getStringExtra("action"));
+//		arguments.putString("method"
+//				, getIntent().getStringExtra("method"));
 		fragment.setArguments(arguments);
 		return fragment;
 	}
